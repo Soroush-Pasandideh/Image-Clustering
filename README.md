@@ -1,43 +1,93 @@
-Midterm Computional Intelligence Project 
+# Flower Classification Project
 
-# Phase 1
-## Process on images
-We first wrote a function to convert the pixels to a vector with 5 dimensions h,s,v,x,y. Also, the weight affects the values during the extraction of information, and since the spatial feature is not very important in the flower stream, the color coefficient and its mean are higher than the rest. After the features are extracted, we enter the execution phase of the K-Mean algorithm.
+## Overview
 
-## K-Mean
-Here we give the algorithm the features that we extracted from all the images in the form of a vector. The main challenge here is choosing n. We have two cases:
--  If we choose a small value for n, for example less than 5, the probability that the flower will also consider the environment as part of the flower is high, especially when the color of part of the flower exists in nature. An example of this can be seen in the images below.
+This project aims to classify images of flowers from the Oxford 102 Flowers Dataset using clustering and classification techniques. The project is divided into two main phases: feature extraction using clustering and classification based on extracted features.
 
-![Alt text](images/image-1.png)
-![Alt text](images/image.png)
+## Dataset
 
-- If n is large (more than 10), we can divide the flower into one cluster, which is ideal, but most likely the flower will be divided into more than one cluster. But this case is better than the previous one because we can merge the clusters that have the flower in them to a good extent by examining features such as spatial location, proximity, color variance, and setting a threshold.
+The dataset used in this project is the [Oxford 102 Flower Dataset](https://www.robots.ox.ac.uk/~vgg/data/flowers/). It contains images of flowers from 102 different classes.
 
-![Alt text](images/image-2.png)
-![Alt text](images/image-3.png)
-![Alt text](images/image-4.png)
+## Phase 1: Feature Extraction and Clustering
 
-### Why not Mean-Shift or DB-Scan
-These two algorithms had a very high time complexity for images with a low number, and we have limitations on the space of RAM and computations for a high number of images. Therefore, it is not cost-effective.
+### Objectives
 
+1. **Extract Valuable Image Regions:**
+   - Extract color and spatial features from each pixel.
+   - Perform clustering to identify regions containing flowers.
+   - Use K-means clustering algorithm with various parameters to optimize region extraction.
 
-## Extract Features of clusters
-After dividing each image into n clusters with K-Mean, we need to extract the features of each cluster in each image so that we can classify the images with them. The features that we calculate for each cluster are:
+2. **Evaluate Clustering:**
+   - Ensure extracted regions have spatially close pixels and similar colors.
+   - Avoid extracting regions that are too small or too large.
+   - Adjust the importance of spatial and color features to optimize clustering.
 
-- The average color of the cluster
+### Methods
 
-With this feature, we can put flowers of the same color in one category.
+- **K-means Clustering:** Applied to extract significant image regions.
+- **Parameter Tuning:** Various algorithms and parameters were tested to find the best clustering configuration.
+- **Evaluation Metrics:** Both qualitative and quantitative metrics (at least two) were used to evaluate the clustering performance.
 
-- The color variance of the cluster
+## Phase 2: Feature Extraction from Regions and Classification
 
-The color of a flower is not the same, and it has a different color around or in the middle, and therefore the rate of color change is also important for us to be able to separate the flower from the background.
+### Objectives
 
-- The area of each cluster: 
+1. **Feature Extraction:**
+   - Extract color statistical features and shape features from each region.
+   - Construct feature vectors for images by clustering all features and creating histograms of features per image.
 
-It is possible that the color of two flowers is the same, but they have different sizes.
+2. **Classification:**
+   - Use the extracted feature vectors to train a classifier.
+   - Evaluate the model using metrics such as accuracy, precision, recall, and F1-score.
 
-## Clustering Clusters
-Now we have to give all the clusters to the K-Mean algorithm. Here we expect the algorithm to separate the clusters of each flower. For example, red flowers in one cluster and yellow flowers in another cluster and so on. In this program, there is no algorithm yet to separate yellow flowers with different shapes.
+### Methods
 
+- **Statistical and Shape Features:** Extracted from identified regions.
+- **Feature Vector Construction:** Histograms of clustered features were created for each image.
+- **Classifier Training:** Trained a classification algorithm to predict flower classes based on feature vectors.
+- **Evaluation Metrics:** Accuracy, precision, recall, and F1-score were calculated for the best model.
+- **Confusion Matrix:** Plotted to analyze classification errors and propose improvements.
 
-# Phase 2
+## Implementation
+
+### Notable Functions
+
+- **`calculate_mean_imgs_clstrs_features`**: Computes the mean feature vector for clusters.
+- **`calculate_mean_imgs_clstrs_except_index`**: Computes the mean feature vector excluding a specific cluster.
+- **`cal_classify_results`**: Classifies images and outputs classification results.
+- **`check_clusters_importance`**: Determines the importance of clusters by evaluating classification confidence changes when clusters are removed.
+- **`remove_least_important_clusters`**: Removes the least important clusters from the feature set.
+
+### Steps
+
+1. **Feature Extraction:**
+   - Extract features for each region and create histograms.
+   - Use clustering to identify and rank the importance of each region.
+
+2. **Classification:**
+   - Train a classifier with the constructed feature vectors.
+   - Evaluate the classifier and plot a confusion matrix.
+   - Propose improvements based on error analysis.
+
+## Results
+
+The project successfully identified and classified flower images with reasonable accuracy. The most important clusters were identified and ranked, contributing to improved classification performance.
+
+## Future Work
+
+- Implement more advanced clustering algorithms to further improve region extraction.
+- Experiment with different classifiers and ensemble methods to enhance classification accuracy.
+- Fine-tune the feature extraction process to capture more discriminative features.
+
+## Contributors
+
+- Soroush Fathi
+- Soroush Pasandideh
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+We would like to thank the University of Oxford for providing the flower dataset and our professors for their guidance throughout this project.
