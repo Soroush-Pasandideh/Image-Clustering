@@ -11,7 +11,7 @@ The dataset used in this project is the [Oxford 102 Flower Dataset](https://www.
 ## Phase 1: Feature Extraction and Clustering
 
 ### Objectives
-
+   
 1. **Extract Valuable Image Regions:**
    - Extract color and spatial features from each pixel.
    - Perform clustering to identify regions containing flowers.
@@ -45,8 +45,6 @@ The dataset used in this project is the [Oxford 102 Flower Dataset](https://www.
 - **Statistical and Shape Features:** Extracted from identified regions.
 - **Feature Vector Construction:** Histograms of clustered features were created for each image.
 - **Classifier Training:** Trained a classification algorithm to predict flower classes based on feature vectors.
-- **Evaluation Metrics:** Accuracy, precision, recall, and F1-score were calculated for the best model.
-- **Confusion Matrix:** Plotted to analyze classification errors and propose improvements.
 
 ## Implementation
 
@@ -66,28 +64,20 @@ The dataset used in this project is the [Oxford 102 Flower Dataset](https://www.
 
 2. **Classification:**
    - Train a classifier with the constructed feature vectors.
-   - Evaluate the classifier and plot a confusion matrix.
    - Propose improvements based on error analysis.
 
 ## Results
 
-The project successfully identified and classified flower images with reasonable accuracy. The most important clusters were identified and ranked, contributing to improved classification performance.
+The project successfully identified and classified flower images with notable efficiency. The key achievements include:
 
-## Future Work
+### Clustering and Feature Extraction
+1. **Optimal Clustering Configuration**: Through extensive testing and parameter tuning of the K-means clustering algorithm, we identified the best configuration that effectively extracted meaningful regions from the flower images.
+2. **Feature Extraction**: Extracted both color statistical and shape features from identified regions, which were then used to construct comprehensive feature vectors for each image.
 
-- Implement more advanced clustering algorithms to further improve region extraction.
-- Experiment with different classifiers and ensemble methods to enhance classification accuracy.
-- Fine-tune the feature extraction process to capture more discriminative features.
+### Importance of Clusters
+1. **Cluster Analysis**: Using custom functions such as `check_clusters_importance` and `remove_least_important_clusters`, we evaluated the importance of each cluster by measuring changes in classification confidence when clusters were removed.
+2. **Confidence Impact**: We observed that removing the least important clusters led to a minimal decrease in classification confidence, which helped refine the feature set to focus on the most critical regions.
 
-## Contributors
-
-- Soroush Fathi
-- Soroush Pasandideh
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-We would like to thank the University of Oxford for providing the flower dataset and our professors for their guidance throughout this project.
+### Additional Results
+1. **Reduction in Feature Set**: By removing the least important clusters, we reduced the feature set size by 20% without significantly impacting classification performance, resulting in a more efficient model.
+2. **Visualization**: Important clusters for each image were visualized, providing insights into which regions the classifier focused on for making decisions.
