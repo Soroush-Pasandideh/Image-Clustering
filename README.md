@@ -77,10 +77,10 @@ The project successfully identified and classified flower images with notable ef
 ### Importance of Clusters
 1. **Cluster Analysis**: Using custom functions such as `check_clusters_importance` and `remove_least_important_clusters`, we evaluated the importance of each cluster by measuring changes in classification confidence when clusters were removed.
 2. **Confidence Impact**: We observed that removing the least important clusters led to a minimal decrease in classification confidence, which helped refine the feature set to focus on the most critical regions.
-![cluster](./images/2.png=300*100)
-![cluster](./images/3.png=300*100)
-![cluster](./images/4.png=300*100)
-![cluster](./images/5.png=300*100)
+<img src="./images/2" width="300" height="100">
+<img src="./images/3" width="300" height="100">
+<img src="./images/4" width="300" height="100">
+<img src="./images/5" width="300" height="100">
 ### Additional Results
 1. **Reduction in Feature Set**: By removing the least important clusters, we reduced the feature set size by 20% without significantly impacting classification performance, resulting in a more efficient model.
 2. **Visualization**: Important clusters for each image were visualized, providing insights into which regions the classifier focused on for making decisions.
