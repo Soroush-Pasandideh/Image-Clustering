@@ -80,9 +80,6 @@ The project successfully identified and classified flower images with notable ef
 <div style="display: flex;">
   <img src="./images/2.png" width="50%" height="50%">
   <img src="./images/3.png" width="50%" height="50%">
-</div>
-
-<div style="display: flex;">
   <img src="./images/4.png" width="50%" height="50%">
   <img src="./images/5.png" width="50%" height="50%">
 </div>
